@@ -1,0 +1,985 @@
+.welcome-page {
+  --welcome-header-height: 88px;
+  min-height: 100svh;
+  overflow: clip;
+  background: var(--ground);
+  color: var(--text);
+}
+
+.welcome-skip {
+  position: fixed;
+  z-index: 10;
+  top: 8px;
+  left: 8px;
+  padding: 10px 14px;
+  transform: translateY(-150%);
+  border-radius: var(--radius-control);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.welcome-skip:focus {
+  transform: translateY(0);
+}
+
+.welcome-header,
+.welcome-footer {
+  display: flex;
+  width: min(100% - 64px, 1240px);
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.welcome-header {
+  position: relative;
+  z-index: 1;
+  min-height: var(--welcome-header-height);
+}
+
+.welcome-brand {
+  padding-left: 0;
+}
+
+.welcome-header .welcome-sign-in {
+  min-width: 84px;
+  min-height: 44px;
+  border-color: transparent;
+  background: transparent;
+  font-size: 14px;
+}
+
+.welcome-sign-in:hover {
+  border-color: var(--border);
+}
+
+.welcome-hero {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  min-height: min(690px, calc(100svh - var(--welcome-header-height)));
+  align-items: center;
+  overflow: visible;
+  padding: clamp(52px, 8vh, 96px) 32px;
+  background: var(--ground);
+}
+
+.welcome-hero-photo {
+  position: absolute;
+  z-index: -1;
+  top: calc(-1 * var(--welcome-header-height));
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% + var(--welcome-header-height));
+  object-fit: cover;
+  object-position: center 58%;
+  opacity: 0.24;
+  mask-image: linear-gradient(to bottom, #000 68%, transparent 100%); /* taste-skill-ignore: approved photo fades into the page ground */
+  pointer-events: none;
+}
+
+.welcome-hero-layout {
+  display: grid;
+  width: min(100%, 1240px);
+  grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
+  align-items: center;
+  gap: clamp(40px, 7vw, 100px);
+  margin: 0 auto;
+}
+
+.welcome-hero-copy {
+  max-width: 540px;
+}
+
+.welcome-hero-copy h1 {
+  max-width: 16ch;
+  margin: 0;
+  font-size: clamp(40px, 4.5vw, 64px);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1.04;
+  text-wrap: balance;
+}
+
+.welcome-hero-copy h1 span {
+  display: block;
+}
+
+.welcome-lede {
+  max-width: 48ch;
+  margin: 24px 0 0;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.welcome-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.welcome-actions .welcome-primary-action,
+.welcome-actions .welcome-secondary-action,
+.welcome-final-cta .welcome-primary-action {
+  min-height: 48px;
+  padding: 0 20px;
+  font-size: 14px;
+}
+
+.welcome-actions .welcome-secondary-action {
+  border-color: var(--control);
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.welcome-action-note {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.welcome-sample {
+  width: 100%;
+  max-width: 560px;
+  justify-self: end;
+  padding: clamp(24px, 3vw, 36px);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.93);
+}
+
+.welcome-sample-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.welcome-sample-label,
+.welcome-sample-date,
+.welcome-transition-label {
+  margin: 0;
+}
+
+.welcome-sample-label {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.welcome-sample-date {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.welcome-sample-mark .brand-mark {
+  width: 30px;
+  height: 30px;
+}
+
+.welcome-sample-flow {
+  display: grid;
+  gap: 0;
+  margin: 24px 0 0 5px;
+  padding-left: 28px;
+  border-left: 1px solid rgba(53, 107, 85, 0.22); /* taste-skill-ignore: timeline inside the product sample */
+}
+
+.welcome-role-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+}
+
+.welcome-role-row > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.welcome-role-row strong {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.welcome-role-row span:not(.welcome-role-dot):not(.welcome-current-label) {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.welcome-role-dot {
+  position: absolute;
+  left: -34px;
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  background: var(--surface);
+}
+
+.welcome-role-active .welcome-role-dot {
+  background: var(--accent);
+}
+
+.welcome-current-label {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.welcome-transition {
+  margin: 20px 0 22px;
+  padding: 4px 0;
+}
+
+.welcome-transition-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.welcome-transition h2 {
+  margin: 0 0 22px;
+  font-size: clamp(24px, 2.6vw, 32px);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+}
+
+.welcome-transition h2 span {
+  padding: 0 3px;
+  color: var(--accent);
+}
+
+.welcome-sample-energy,
+.welcome-sample-focus {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.welcome-sample-energy {
+  padding-bottom: 14px;
+}
+
+.welcome-sample-energy > span,
+.welcome-sample-focus > span {
+  flex: 0 0 auto;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.welcome-sample-energy strong {
+  color: var(--accent);
+  font-size: 20px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.welcome-sample-focus {
+  display: grid;
+  gap: 5px;
+  margin-top: 12px;
+}
+
+.welcome-sample-focus p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.welcome-sample-values {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 16px;
+  margin-top: 18px;
+  font-size: 13px;
+}
+
+.welcome-sample-values span:last-child {
+  color: var(--accent);
+}
+
+.welcome-trust,
+.welcome-faq {
+  width: min(100% - 64px, 1120px);
+  margin: 0 auto;
+}
+
+.welcome-how {
+  padding: clamp(68px, 8vw, 112px) 0 clamp(84px, 10vw, 136px);
+  background: var(--ground);
+}
+
+.welcome-how-layout {
+  display: grid;
+  width: min(100% - 64px, 1120px);
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  align-items: center;
+  gap: clamp(56px, 8vw, 120px);
+  margin: 0 auto;
+}
+
+.welcome-section-intro {
+  grid-column: 2;
+  grid-row: 1;
+  max-width: 420px;
+}
+
+.welcome-section-intro h2,
+.welcome-trust h2,
+.welcome-final-cta h2 {
+  margin: 0;
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.18;
+  text-wrap: balance;
+}
+
+.welcome-section-intro > p:first-of-type {
+  max-width: 32ch;
+  margin: 22px 0 0;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.welcome-how-sample-note {
+  margin: 28px 0 0;
+  color: var(--accent);
+  font-size: 14px;
+}
+
+.welcome-daybook {
+  position: relative;
+  display: grid;
+  grid-column: 1;
+  grid-row: 1;
+  gap: 64px;
+  margin: 0;
+  padding: 16px 0 16px 40px;
+  list-style: none;
+}
+
+.welcome-daybook::before {
+  position: absolute;
+  top: 22px;
+  bottom: 22px;
+  left: 12px;
+  width: 2px;
+  background: rgba(53, 107, 85, 0.22);
+  content: '';
+}
+
+.welcome-daybook::after {
+  position: absolute;
+  top: 22px;
+  bottom: 22px;
+  left: 12px;
+  width: 2px;
+  background: var(--accent);
+  content: '';
+  transform: scaleY(0);
+  transform-origin: top;
+  pointer-events: none;
+}
+
+.welcome-daybook-active::after {
+  transform: scaleY(1);
+  transition: transform 1000ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.welcome-daybook li {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 104px minmax(0, 1fr);
+  gap: clamp(18px, 3vw, 36px);
+}
+
+.welcome-daybook li::before {
+  position: absolute;
+  top: 6px;
+  left: -33px;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  background: var(--ground);
+  content: '';
+}
+
+.welcome-daybook li:last-child::before {
+  background: var(--accent);
+}
+
+.welcome-daybook time {
+  color: var(--accent);
+  font-size: 15px;
+  margin: 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.welcome-daybook-entry h3 {
+  margin: -5px 0 0;
+  font-size: clamp(24px, 2.6vw, 32px);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+}
+
+.welcome-daybook-entry h3 span {
+  color: var(--accent);
+}
+
+.welcome-daybook-entry > p {
+  max-width: 38ch;
+  margin: 14px 0 0;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.welcome-daybook-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 12px;
+  margin: 22px 0 0;
+  padding: 18px 20px;
+  border-radius: 10px;
+  background: #e9f0eb;
+}
+
+.welcome-daybook-detail dt {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.welcome-daybook-detail dd {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.welcome-daybook-switch {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.welcome-daybook-switch > div,
+.welcome-daybook-totals > div {
+  display: grid;
+  gap: 5px;
+}
+
+.welcome-daybook-switch > div:last-child {
+  grid-column: 1 / -1;
+}
+
+.welcome-daybook-totals {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.welcome-daybook-totals > div:last-child dd {
+  color: var(--accent);
+}
+
+.welcome-trust {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: clamp(36px, 8vw, 112px);
+  padding: 0 0 clamp(92px, 10vw, 140px);
+}
+
+.welcome-trust-intro {
+  max-width: 400px;
+}
+
+.welcome-trust-intro > p {
+  max-width: 37ch;
+  margin: 24px 0 0;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.welcome-trust-action {
+  min-height: 48px;
+  margin-top: 30px;
+  padding: 0 20px;
+  background: var(--surface);
+  font-size: 14px;
+}
+
+.welcome-trust-evidence {
+  display: grid;
+  gap: 24px;
+  padding: 28px clamp(24px, 3vw, 36px);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.welcome-trust-evidence-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.welcome-trust-evidence-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.75fr) minmax(0, 1.25fr);
+  align-items: start;
+  gap: 24px;
+}
+
+.welcome-trust-evidence-row h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.welcome-trust-evidence-row p {
+  max-width: 48ch;
+  margin: 0;
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.welcome-faq {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  align-items: center;
+  gap: clamp(56px, 8vw, 120px);
+  padding-bottom: clamp(92px, 10vw, 140px);
+}
+
+.welcome-faq-intro {
+  grid-column: 2;
+  grid-row: 1;
+  max-width: 400px;
+}
+
+.welcome-faq-intro h2 {
+  margin: 0;
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.18;
+  text-wrap: balance;
+}
+
+.welcome-faq-intro p {
+  max-width: 34ch;
+  margin: 22px 0 0;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.welcome-faq-list {
+  display: grid;
+  grid-column: 1;
+  grid-row: 1;
+  gap: 34px;
+  margin: 0;
+}
+
+.welcome-faq-list dt {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+}
+
+.welcome-faq-list dd {
+  max-width: 60ch;
+  margin: 10px 0 0;
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.welcome-final-cta {
+  min-height: 500px;
+  display: grid;
+  align-items: center;
+  padding: 88px 32px;
+  background-color: var(--ground);
+  background-image:
+    linear-gradient(90deg, var(--ground) 0%, rgba(249, 251, 252, 0.92) 32%, rgba(249, 251, 252, 0.25) 72%, rgba(249, 251, 252, 0.08) 100%), /* taste-skill-ignore: neutral photo scrim keeps the call to action legible */
+    linear-gradient(180deg, var(--ground) 0%, transparent 18%, transparent 74%, var(--ground) 100%), /* taste-skill-ignore: approved photo blends into the page ground */
+    url('../../assets/mindful-equilibrium-closing.jpg');
+  background-position: center, center, center 58%;
+  background-size: cover;
+}
+
+.welcome-final-cta-content {
+  display: grid;
+  width: min(100%, 1120px);
+  justify-items: start;
+  gap: 18px;
+  margin: 0 auto;
+}
+
+.welcome-final-cta h2 {
+  max-width: 13ch;
+  font-size: clamp(38px, 4.5vw, 58px);
+  line-height: 1.08;
+}
+
+.welcome-final-cta p {
+  max-width: 35ch;
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.welcome-footer {
+  min-height: 72px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+@media (max-width: 940px) {
+  .welcome-hero {
+    min-height: 0;
+    padding-top: 70px;
+    padding-bottom: 74px;
+  }
+
+  .welcome-hero-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 48px;
+  }
+
+  .welcome-hero-copy {
+    max-width: 640px;
+  }
+
+  .welcome-sample {
+    justify-self: start;
+  }
+
+  .welcome-how-layout {
+    max-width: 680px;
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 54px;
+  }
+
+  .welcome-section-intro,
+  .welcome-daybook {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .welcome-faq {
+    max-width: 680px;
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 44px;
+  }
+
+  .welcome-faq-intro,
+  .welcome-faq-list {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 680px) {
+  .welcome-page {
+    --welcome-header-height: 72px;
+  }
+
+  .welcome-header,
+  .welcome-footer,
+  .welcome-how-layout,
+  .welcome-trust,
+  .welcome-faq {
+    width: calc(100% - 40px);
+  }
+
+  .welcome-header {
+    min-height: var(--welcome-header-height);
+  }
+
+  .welcome-hero {
+    padding: 54px 20px 58px;
+  }
+
+  .welcome-hero-photo {
+    object-position: 20% center;
+    opacity: 0.2;
+  }
+
+  .welcome-hero-layout {
+    gap: 34px;
+  }
+
+  .welcome-hero-copy h1 {
+    font-size: clamp(38px, 11vw, 48px);
+  }
+
+  .welcome-lede {
+    margin-top: 18px;
+    font-size: 16px;
+  }
+
+  .welcome-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-top: 24px;
+  }
+
+  .welcome-actions .button {
+    width: 100%;
+  }
+
+  .welcome-action-note {
+    font-size: 13px;
+  }
+
+  .welcome-sample {
+    padding: 24px 20px;
+  }
+
+  .welcome-role-row {
+    gap: 8px;
+  }
+
+  .welcome-role-row > div {
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
+
+  .welcome-current-label {
+    font-size: 12px;
+  }
+
+  .welcome-how {
+    padding: 64px 0 76px;
+  }
+
+  .welcome-section-intro {
+    max-width: 100%;
+  }
+
+  .welcome-how-layout {
+    gap: 40px;
+  }
+
+  .welcome-daybook {
+    gap: 54px;
+    padding: 8px 0 8px 32px;
+  }
+
+  .welcome-daybook::before {
+    top: 14px;
+    bottom: 14px;
+    left: 8px;
+  }
+
+  .welcome-daybook li {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .welcome-daybook li::before {
+    left: -29px;
+  }
+
+  .welcome-daybook-totals {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .welcome-daybook-totals > div:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .welcome-trust {
+    grid-template-columns: 1fr;
+    gap: 38px;
+    padding-bottom: 80px;
+  }
+
+  .welcome-trust-action {
+    width: 100%;
+  }
+
+  .welcome-trust-evidence {
+    gap: 28px;
+    padding: 24px 22px;
+  }
+
+  .welcome-trust-evidence-row {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .welcome-faq {
+    gap: 36px;
+    padding-bottom: 80px;
+  }
+
+  .welcome-faq-list {
+    gap: 30px;
+  }
+
+  .welcome-final-cta {
+    min-height: 0;
+    padding: 245px 20px 68px;
+    background-image:
+      linear-gradient(180deg, rgba(249, 251, 252, 0.12) 0%, rgba(249, 251, 252, 0.2) 26%, var(--ground) 58%), /* taste-skill-ignore: mobile photo blends into readable copy */
+      url('../../assets/mindful-equilibrium-closing.jpg');
+    background-position: center, right top;
+    background-repeat: no-repeat;
+    background-size: cover, auto 290px;
+  }
+
+  .welcome-final-cta-content {
+    gap: 15px;
+  }
+
+  .welcome-final-cta h2 {
+    font-size: clamp(36px, 10vw, 48px);
+  }
+
+  .welcome-final-cta .button {
+    width: 100%;
+  }
+
+  .welcome-footer {
+    min-height: 80px;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .welcome-daybook::after { transform: scaleY(1); }
+  .welcome-daybook-active::after { transition: none; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .welcome-scroll-ready {
+    opacity: 0.6;
+    transform: translateY(14px);
+  }
+
+  .welcome-section-intro h2.welcome-scroll-ready,
+  .welcome-trust-intro h2.welcome-scroll-ready,
+  .welcome-faq-intro h2.welcome-scroll-ready {
+    opacity: 0.55;
+    transform: translateY(26px);
+  }
+
+  .welcome-section-intro > p:first-of-type.welcome-scroll-ready,
+  .welcome-trust-intro > p.welcome-scroll-ready,
+  .welcome-faq-intro > p.welcome-scroll-ready,
+  .welcome-final-cta-content > p.welcome-scroll-ready {
+    opacity: 0.58;
+    transform: translateX(12px);
+  }
+
+  .welcome-daybook-entry h3.welcome-scroll-ready,
+  .welcome-trust-evidence-row h3.welcome-scroll-ready,
+  .welcome-faq-list dt.welcome-scroll-ready {
+    opacity: 0.55;
+    transform: translateX(-16px);
+  }
+
+  .welcome-daybook-entry > p.welcome-scroll-ready,
+  .welcome-trust-evidence-row p.welcome-scroll-ready {
+    opacity: 0.62;
+    transform: translateY(10px);
+  }
+
+  .welcome-faq-list dd.welcome-scroll-ready {
+    opacity: 0.58;
+    transform: translateX(16px);
+  }
+
+  .welcome-final-cta h2.welcome-scroll-ready {
+    opacity: 0.62;
+    transform: translateY(10px) scale(0.97);
+    transform-origin: left center;
+  }
+
+  .welcome-scroll-active {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 680ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 680ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .welcome-section-intro h2.welcome-scroll-active,
+  .welcome-trust-intro h2.welcome-scroll-active,
+  .welcome-faq-intro h2.welcome-scroll-active,
+  .welcome-final-cta h2.welcome-scroll-active {
+    transition-duration: 800ms;
+  }
+
+  .welcome-section-intro > p:first-of-type.welcome-scroll-active,
+  .welcome-trust-intro > p.welcome-scroll-active,
+  .welcome-faq-intro > p.welcome-scroll-active,
+  .welcome-final-cta-content > p.welcome-scroll-active {
+    transition-delay: 80ms;
+    transition-duration: 600ms;
+  }
+
+  .welcome-daybook li:nth-child(2) .welcome-scroll-active {
+    transition-delay: 70ms;
+  }
+
+  .welcome-daybook li:nth-child(3) .welcome-scroll-active {
+    transition-delay: 130ms;
+  }
+
+  .welcome-faq-list dd.welcome-scroll-active {
+    transition-delay: 70ms;
+    transition-duration: 540ms;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .welcome-hero-photo {
+      animation: welcome-photo-drift linear both;
+      animation-timeline: view();
+      animation-range: exit 0% exit 100%;
+    }
+  }
+}
+
+@keyframes welcome-photo-drift {
+  from { transform: translateY(0); }
+  to { transform: translateY(4%); }
+}
+
